@@ -1,11 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom'; 
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext'; 
 
 export default function ProductCard({ id, name, price, imageUrl, category, stock }) {
   const { addToCart } = useCart();
+  const { currentUser } = useAuth(); 
+  const navigate = useNavigate();
 
   const handleAddToCart = () => {
+    if (!currentUser) {
+      alert('Anda harus login untuk menambahkan item ke keranjang.');
+      navigate('/login'); // Arahkan ke halaman login
+      return;
+    }
     const productToAdd = { id, name, price, imageUrl, category, stock };
     addToCart(productToAdd);
   };

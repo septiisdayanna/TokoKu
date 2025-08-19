@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { useCart } from '../context/CartContext'; // 1. Impor useCart
+import { useCart } from '../context/CartContext'; 
 
 export default function Navbar() {
   const { currentUser, logout } = useAuth();
-  const { cartItems } = useCart(); // 2. Dapatkan item keranjang
+  const { cartItems } = useCart();
   const navigate = useNavigate();
 
   // State lokal untuk input pencarian
@@ -55,9 +55,9 @@ export default function Navbar() {
         >
           <option value="">Semua Kategori</option>
           <option value="buah">Buah</option>
-          <option value="elektronik">Elektronik</option>
-          <option value="pakaian">Pakaian</option>
-          {/* Kategori ini sebaiknya diambil dinamis dari database di aplikasi nyata */}
+          <option value="sayur">Sayur</option>
+          <option value="ikan">Ikan</option>
+          <option value="bumbu">Bumbu</option>
         </select>
       </div>
 
@@ -86,14 +86,19 @@ export default function Navbar() {
           )}
         </Link>
 
-        {/* Status Login */}
+         {/* Status Login */}
         {currentUser ? (
           <>
             <span className="text-sm hidden md:block">Halo, {currentUser.email}</span>
             <button onClick={handleLogout} className="bg-red-500 px-3 py-1 rounded text-sm">Logout</button>
           </>
         ) : (
-          <Link to="/login" className="text-sm">Login</Link>
+          <div className="flex items-center gap-4">
+            <Link to="/login" className="text-sm hover:underline">Login</Link>
+            <Link to="/register" className="text-sm bg-blue-600 px-3 py-1 rounded hover:bg-blue-700 transition-colors">
+              Register
+            </Link>
+          </div>
         )}
       </div> 
     </nav>   

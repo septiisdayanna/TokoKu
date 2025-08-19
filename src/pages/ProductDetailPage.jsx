@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebaseConfig';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 
 export default function ProductDetailPage() {
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
-  const [quantity, setQuantity] = useState(1); // State untuk kuantitas
+  const [quantity, setQuantity] = useState(1); 
   const { addToCart } = useCart();
+  const { currentUser } = useAuth(); 
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchProduct() {
@@ -24,6 +27,11 @@ export default function ProductDetailPage() {
   }, [productId]);
 
   const handleAddToCart = () => {
+    if (!currentUser) {
+      alert('Anda harus login untuk menambahkan item ke keranjang.');
+      navigate('/login'); // Arahkan ke halaman login
+      return;
+    }
     if (product) {
       addToCart({ ...product, quantity });
     }

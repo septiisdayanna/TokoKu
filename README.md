@@ -61,7 +61,7 @@ Untuk menjalankan proyek ini secara lokal, ikuti langkah-langkah berikut:
 
 ## Penjelasan Dukungan AI
 
-Proyek ini dikembangkan dengan bantuan intensif dari **GitHub Copilot (berbasis model Gemini)** sebagai AI programming assistant. AI berperan sebagai partner pemrograman yang membantu dalam berbagai aspek pengembangan:
+Proyek ini dikembangkan dengan bantuan intensif dari **GitHub Copilot (berbasis model Gemini) dan IBM Granite** sebagai AI programming assistant. AI berperan sebagai partner pemrograman yang membantu dalam berbagai aspek pengembangan:
 
 -   **Pembuatan Kode (Scaffolding):** Membuat struktur awal untuk komponen React, context, dan halaman dengan cepat.
 -   **Implementasi Logika:** Memberikan contoh implementasi untuk menghubungkan aplikasi dengan Firebase, seperti mengambil data dari Firestore dan fungsi autentikasi.
